@@ -2,7 +2,7 @@ var webpack = require("webpack");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: "./www/js/index.js",
+    entry: "./app/index.js",
     output: {
         path: "./www/",
         filename: "bundle.js"
@@ -28,6 +28,14 @@ module.exports = {
             }, {
                 test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
                 loader: 'url-loader?limit=100000&name=./dist/fonts/[hash].[ext]'
+            },
+            {
+                test: /\.html$/,
+                loader: "html"
+            },
+            {
+                test: /\.scss$/,
+                loaders: ["style", "css", "sass"]
             }]
     },
     plugins: [

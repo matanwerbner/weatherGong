@@ -1,0 +1,65 @@
+<ion-view view-title="Dashboard">
+  <ion-nav-title>
+    WEATHER GONG
+  </ion-nav-title>
+  <ion-content class="padding" id="dashboard-page-container">
+    <div class="current-weather-container">
+      <div class="row header">
+        <div class="col">
+
+        </div>
+        <div class="col">ספוט</div>
+        <div class="col">שעה</div>
+        <div class="col">עוצמת רוח</div>
+        <div class="col">כיוון</div>
+        <div class="col">טמפ'</div>
+        <div class="col">גובה גל</div>
+        <div class="col">כיוון</div>
+        <div class="col">.col</div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="icon ion-ios-minus-outline"></button>
+        </div>
+        <div class="col">ספוט</div>
+        <div class="col">שעה</div>
+        <div class="col">עוצמת רוח</div>
+        <div class="col">כיוון</div>
+        <div class="col">טמפ'</div>
+        <div class="col">גובה גל</div>
+        <div class="col">כיוון</div>
+        <div class="col">.col</div>
+      </div>
+    </div>
+    <div class="forecast-container">
+      <h3>תחזית (מצב שיא)</h3>
+      <div class="row header">
+        <div class="col">
+        </div>
+        <div class="col">ספוט</div>
+        <div class="col">משעה</div>
+        <div class="col">רוח</div>
+        <div class="col">כיוון</div>
+        <div class="col">טמפ'</div>
+        <div class="col">עד שעה</div>
+        <div class="col">רוח</div>
+        <div class="col">כיוון</div>
+      </div>
+      <div class="row" ng-repeat="row in data">
+        <div class="col">
+          <button class="icon ion-ios-minus-outline"></button>
+        </div>
+        <div class="col">{{ row.location }}</div>
+        <div class="col">{{ row.time }}</div>
+        <div class="col">{{ row.wind }}</div>
+        <div class="col">{{ row.windDirection }}</div>
+        <div class="col">{{ row.temperature }}</div>
+        <div class="col">{{ row.wave }}</div>
+        <div class="col">{{ row.waveDirection }}</div>
+        <div class="col">
+          <button class="icon ion-ios-camera-outline" /></div>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>
