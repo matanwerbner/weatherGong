@@ -1,4 +1,4 @@
-export default ['$scope', (scope) => {
+export default ['$scope', '$ngRedux', (scope, ngRedux) => {
     scope.data = [{
         location: 'tel-aviv',
         time: '08:00',
@@ -7,5 +7,14 @@ export default ['$scope', (scope) => {
         temp: '28°',
         wave: '0.5 / 7sec',
         waveDirection: 'N'
-    }]
+    }];
+    
+    const mapStateToThis = (state) => {
+        return {
+          value: state.counter
+        };
+    }
+
+    let unsubscribe = ngRedux.connect(mapStateToThis, null)(scope);
+    scope.$on('$destroy', unsubscribe);
 }]

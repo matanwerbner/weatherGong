@@ -38,10 +38,16 @@ module.exports = {
                 loaders: ["style", "css", "sass"]
             }]
     },
+
+    devtool: "source-map",
+    debug: true,
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
             sourceMap: true,
-            mangle: false
+            mangle: false,
+            compress: {
+                drop_debugger: false
+            }
         }),
         new HtmlWebpackPlugin({
             template: 'pug!templates/index.pug',
