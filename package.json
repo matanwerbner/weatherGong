@@ -23,6 +23,7 @@
     "redux": "^3.5.2",
     "redux-actions": "^0.10.1",
     "redux-create-reducer": "^1.1.1",
+    "redux-promise": "^0.5.3",
     "sass-loader": "^4.0.0",
     "shelljs": "^0.3.0",
     "style-loader": "^0.13.1",
