@@ -1,18 +1,45 @@
 import tree from '../../../store';
-
+var locationModalTemplate = require('./locationModal.html');
 const connectSubscriptions = (data, scope, $timeout) => {
-    let hashKey = 0;
     $timeout(() => {
-        scope.data = data.reduce((curr, next) => {
-            return Object.assign(curr, { [hashKey++] : next });
-        }, {});
+        scope.currentData = scope.forecastData = data;
     });
 }
 
-export default ['$scope', '$timeout', (scope, $timeout) => {
-    const subscriptionSelector = tree.select('subscriptions', 'subscribedLocations');
-    connectSubscriptions(subscriptionSelector.get(), scope, $timeout);
-    subscriptionSelector.on('update', function (e) {
-        connectSubscriptions(e.data.currentData, scope, $timeout);
+const connectLocations = (data, scope, $timeout) => {
+    $timeout(() => {
+        scope.locations = data;
     });
-}]
+}
+
+export default ['$scope', '$timeout', '$ionicModal',
+    (scope, $timeout, $ionicModal) => {
+        const subscriptionSelector = tree.select('subscriptions', 'subscribedLocations');
+        const locationSelector = tree.select('locations');
+        connectSubscriptions(subscriptionSelector.get(), scope, $timeout);
+        subscriptionSelector.on('update', function (e) {
+            connectSubscriptions(e.data.currentData, scope, $timeout);
+        });
+
+        locationSelector.on('update',(e) => {
+            connectLocations(e.data.currentData, scope, $timeout);
+        });
+
+        scope.modal = $ionicModal.fromTemplate(locationModalTemplate, {
+            scope,
+            animation: 'slide-in-up'
+        });
+    
+        scope.showAddLocation = function(){
+            scope.modal.show();
+        }
+
+        scope.closeModal = function() {
+            scope.modal.hide();
+        };
+
+        scope.addLocation = (location) => {
+            tree.push(["subscriptions", "ids"], location.id);
+            scope.modal.hide();
+        };
+    }]

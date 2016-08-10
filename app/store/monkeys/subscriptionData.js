@@ -5,12 +5,11 @@ import loadSubscriptions from './loaders/subscriptionData';
 export default monkey({
     cursors: {
         ids: ['subscriptions', 'ids'],
-        locations: ['subscriptions', 'locations']
+        data: ['subscriptions', 'data']
     },
     get: function (state) {
-        debugger;
         const result = state.ids.map((id) => {
-            let data = state.locations[id];
+            let data = state.data[id];
             return data || { id, loading: true };
         });     
         loadSubscriptions(result.filter((r) => r.loading));   

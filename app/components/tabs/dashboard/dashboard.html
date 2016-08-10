@@ -15,21 +15,28 @@
         <div class="col">טמפ'</div>
         <div class="col">גובה גל</div>
         <div class="col">כיוון</div>
-        <div class="col">.col</div>
+        <div class="col"></div>
       </div>
-      <div class="row">
+      <div class="row" ng-repeat="row in currentData">
         <div class="col">
           <button class="icon ion-ios-minus-outline"></button>
         </div>
-        <div class="col">ספוט</div>
-        <div class="col">שעה</div>
-        <div class="col">עוצמת רוח</div>
-        <div class="col">כיוון</div>
-        <div class="col">טמפ'</div>
-        <div class="col">גובה גל</div>
-        <div class="col">כיוון</div>
-        <div class="col">.col</div>
+        <div class="col">{{ row.location }}</div>
+        <div class="col">{{ row.time }}</div>
+        <div class="col">{{ row.wind }}</div>
+        <div class="col">{{ row.windDirection }}</div>
+        <div class="col">{{ row.temperature }}</div>
+        <div class="col">{{ row.wave }}</div>
+        <div class="col">{{ row.waveDirection }}</div>
+        <div class="col">
+          <button class="icon ion-ios-camera-outline" /></div>
       </div>
+      <div class="row">
+         <div class="col">
+          <button class="button icon ion-ios-plus-outline"
+                  ng-click="showAddLocation()"></button>
+        </div>
+       </div>
     </div>
     <div class="forecast-container">
       <h3>תחזית (מצב שיא)</h3>
@@ -45,7 +52,7 @@
         <div class="col">רוח</div>
         <div class="col">כיוון</div>
       </div>
-      <div class="row" ng-repeat="row in data">
+      <div class="row" ng-repeat="row in forecastData">
         <div class="col">
           <button class="icon ion-ios-minus-outline"></button>
         </div>
@@ -56,9 +63,14 @@
         <div class="col">{{ row.temperature }}</div>
         <div class="col">{{ row.wave }}</div>
         <div class="col">{{ row.waveDirection }}</div>
-        <div class="col">
-          <button class="icon ion-ios-camera-outline" /></div>
+        <div class="col"></div>
       </div>
+       <div class="row">
+         <div class="col">
+          <button class="button icon ion-ios-plus-outline"
+                  ng-click="showAddLocation()"></button>
+        </div>
+       </div>
 
     </div>
   </ion-content>
