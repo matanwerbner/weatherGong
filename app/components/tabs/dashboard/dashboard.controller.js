@@ -1,20 +1,18 @@
-export default ['$scope', '$ngRedux', (scope, ngRedux) => {
-    scope.data = [{
-        location: 'tel-aviv',
-        time: '08:00',
-        wind: '8 Kts',
-        windDirection: 'N',
-        temp: '28°',
-        wave: '0.5 / 7sec',
-        waveDirection: 'N'
-    }];
-    
-    const mapStateToThis = (state) => {
-        return {
-          value: state.counter
-        };
-    }
+import tree from '../../../store';
 
-    let unsubscribe = ngRedux.connect(mapStateToThis, null)(scope);
-    scope.$on('$destroy', unsubscribe);
+const connectSubscriptions = (data, scope, $timeout) => {
+    let hashKey = 0;
+    $timeout(() => {
+        scope.data = data.reduce((curr, next) => {
+            return Object.assign(curr, { [hashKey++] : next });
+        }, {});
+    });
+}
+
+export default ['$scope', '$timeout', (scope, $timeout) => {
+    const subscriptionSelector = tree.select('subscriptions', 'subscribedLocations');
+    connectSubscriptions(subscriptionSelector.get(), scope, $timeout);
+    subscriptionSelector.on('update', function (e) {
+        connectSubscriptions(e.data.currentData, scope, $timeout);
+    });
 }]

@@ -1,11 +1,6 @@
 import components from './components';
-import ngRedux from 'ng-redux';
-import reducer from './reducers';
-const initialState = null;
-import createLogger from 'redux-logger';
 import './scss/index.scss';
-
-angular.module('app', ['ionic', components, ngRedux])
+angular.module('app', ['ionic', components])
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -22,6 +17,4 @@ angular.module('app', ['ionic', components, ngRedux])
     });
 }).config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/tab/dash');
-}).config(($ngReduxProvider) => {
-    $ngReduxProvider.createStoreWith(reducer, [createLogger], null, initialState);
 });

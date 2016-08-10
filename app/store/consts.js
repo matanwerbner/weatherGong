@@ -1,0 +1,1 @@
+export const default_subscriptions = [1,2];
