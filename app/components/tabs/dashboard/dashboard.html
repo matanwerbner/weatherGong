@@ -19,7 +19,7 @@
       </div>
       <div class="row" ng-repeat="row in currentData">
         <div class="col">
-          <button class="icon ion-ios-minus-outline"></button>
+          <button class="button icon ion-ios-minus-outline" ng-click="removeLocation(row.id)"></button>
         </div>
         <div class="col">{{ row.location }}</div>
         <div class="col">{{ row.time }}</div>
@@ -54,7 +54,7 @@
       </div>
       <div class="row" ng-repeat="row in forecastData">
         <div class="col">
-          <button class="icon ion-ios-minus-outline"></button>
+          <button class="button icon ion-ios-minus-outline" ng-click="removeLocation(row.id)"></button>
         </div>
         <div class="col">{{ row.location }}</div>
         <div class="col">{{ row.time }}</div>

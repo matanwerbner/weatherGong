@@ -1,5 +1,5 @@
 import tree from '../../index.js';
-import { fetchLocationsData } from '../../../api'
+import { fetchLocationsData } from '../../../api/mockApi'
 export default (ids) => {
     if (ids.length == 0)
         return null;

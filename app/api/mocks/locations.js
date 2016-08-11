@@ -1,0 +1,1 @@
+module.exports = [{"id":1,"name":"tel-aviv"},{"id": 2, "name":"haifa"},{"id": 3, "name":"kineret"},{"id": 4, "name": "bat-yam"}]

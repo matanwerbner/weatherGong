@@ -1,6 +1,6 @@
 import { default_subscriptions } from './consts';
 import subscript_data_monkey from './monkeys/subscriptionData';
-import { fetchLocations } from '../api';
+import { fetchLocations } from '../api/mockApi';
 var Baobab = require('baobab');
 
 const tree = new Baobab({
@@ -8,13 +8,15 @@ const tree = new Baobab({
 
     },
     subscriptions: {
-        ids: window.localStorage.getItem("subscriptions") || default_subscriptions,
+        ids: window.localStorage.getItem("subscriptionIds") ?
+               JSON.parse(window.localStorage.getItem("subscriptionIds")) : 
+               default_subscriptions,
         data: [],
         subscribedLocations: subscript_data_monkey
     }
-},{
-          immutable: false
-        });
+}, {
+        immutable: false
+    });
 export default tree;
 
 fetchLocations().then((result) => {

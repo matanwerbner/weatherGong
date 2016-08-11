@@ -1,1 +1,1 @@
-export const default_subscriptions = [1,2];
+export const default_subscriptions = [];
