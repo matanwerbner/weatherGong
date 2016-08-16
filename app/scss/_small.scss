@@ -1,0 +1,10 @@
+@media (max-width: 500px) {
+    #dashboard-page-container .scroll> div .col {
+        max-width: 40px;
+        min-width: 40px;
+        &.iconCol {
+            max-width: 25px;
+            min-width: 25px;
+        }
+    }
+}

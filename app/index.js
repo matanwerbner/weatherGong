@@ -1,6 +1,8 @@
 import components from './components';
+import { stateModule } from './store/index';
+
 import './scss/index.scss';
-angular.module('app', ['ionic', components])
+angular.module('app', ['ionic', components, stateModule])
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -17,4 +19,6 @@ angular.module('app', ['ionic', components])
     });
 }).config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/tab/dash');
-});
+}).config(['$ionicConfigProvider', function($ionicConfigProvider) {
+    $ionicConfigProvider.tabs.position('bottom'); // other values: top
+}]);

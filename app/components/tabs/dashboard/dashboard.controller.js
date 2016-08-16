@@ -1,34 +1,23 @@
-import tree from '../../../store';
 import { 
     addToSubscriptionIdsStorage,
     removeFromSubscriptionIdsStorage,
     getSubscriptionIdsFromStorage
 } from '../../../storage/subscriptionIds.helper';
+
 var locationModalTemplate = require('./locationModal.html');
 
-const connectSubscriptions = (data, scope, $timeout) => {
-    $timeout(() => {
-        scope.currentData = scope.forecastData = data;
-    });
-}
-
-const connectLocations = (data, scope, $timeout) => {
-    $timeout(() => {
-        scope.locations = data;
-    });
-}
-
-export default ['$scope', '$timeout', '$ionicModal',
-    (scope, $timeout, $ionicModal) => {
-        const subscriptionSelector = tree.select('subscriptions', 'subscribedLocations');
-        const locationSelector = tree.select('locations');
-        connectSubscriptions(subscriptionSelector.get(), scope, $timeout);
+export default ['$scope', '$timeout', '$ionicModal', 'AppState',
+    (scope, $timeout, $ionicModal, AppState) => {
+        const subscriptionSelector = AppState.select('subscriptions', 'subscribedLocations');
+        const locationSelector = AppState.select('locations');
+        scope.currentData = subscriptionSelector.get();
+        
         subscriptionSelector.on('update', function (e) {
-            connectSubscriptions(e.data.currentData, scope, $timeout);
+            scope.currentData = scope.forecastData = e.data.currentData;
         });
 
         locationSelector.on('update', (e) => {
-            connectLocations(e.data.currentData, scope, $timeout);
+            scope.locations = e.data.currentData;
         });
 
         scope.getLocationsForModal = () => {
@@ -51,14 +40,14 @@ export default ['$scope', '$timeout', '$ionicModal',
         };
 
         scope.removeLocation = (id) => {
-            const idsSelector = tree.select(["subscriptions", "ids"]);
+            const idsSelector = AppState.select(["subscriptions", "ids"]);
             const existingIDs = idsSelector.get();
             idsSelector.set(existingIDs.filter((l) => l != id));
             removeFromSubscriptionIdsStorage(id);
         }
 
         scope.addLocation = (location) => {
-            tree.push(["subscriptions", "ids"], location.id);
+            AppState.push(["subscriptions", "ids"], location.id);
             addToSubscriptionIdsStorage(location.id);
             scope.modal.hide();
         };

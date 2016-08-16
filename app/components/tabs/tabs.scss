@@ -1,7 +1,10 @@
 
 .tabs-icon-top{
     > .tabs .tab-item {
-      line-height: 40px;
-      font-size: 15px;   
+      flex: 1;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     }
 } 

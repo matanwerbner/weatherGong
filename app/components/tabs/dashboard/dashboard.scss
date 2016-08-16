@@ -1,29 +1,14 @@
 #dashboard-page-container .scroll {
     direction: rtl;
     > div {
-        margin-bottom: 60px;
+        margin-bottom: 30px;
         word-wrap: normal;
         .col {
             text-align: right;
-            min-width: 37px;
-            font-size: 8px;
-            .button {
-                background: transparent;
-                min-height: auto;
-                min-width: auto;
-            }
-
-            .button.icon:before {
-                line-height: 20px;
-            }
-            button.icon {
-                font-size: 21px;
-                line-height: 0px;
-                background: none;
-                padding: 0;
-                margin: 0;
-                outline: 0;
-                border: none;
+            font-size: 11px;
+            direction: ltr;
+            .btn {
+                cursor: pointer;
             }
         }
     }

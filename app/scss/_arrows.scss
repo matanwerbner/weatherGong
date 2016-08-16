@@ -1,0 +1,27 @@
+@mixin rotate($deg) {
+          transform: rotate(#{$deg}deg);
+}
+
+i.arrow {
+    &.ne:before {
+        @include rotate(45);
+    }
+    &.e:before {
+        @include rotate(90);
+    }
+    &.se:before {
+        @include rotate(135);
+    }
+    &.s:before {
+        @include rotate(180);
+    }
+    &.sw:before {
+        @include rotate(225);
+    }
+    &.w:before {
+        @include rotate(270);
+    }
+    &.nw:before {
+        @include rotate(315);
+    }
+}

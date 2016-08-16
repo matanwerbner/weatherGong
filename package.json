@@ -3,7 +3,8 @@
   "version": "1.1.1",
   "description": "weatherGong: An Ionic project",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot --progress --content-base www/"
+    "start": "webpack-dev-server --inline --hot --progress --content-base www/",
+    "upload": "webpack && ionic upload"
   },
   "devDependencies": {
     "babel-core": "^6.13.1",
